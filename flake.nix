@@ -40,10 +40,10 @@
           '';
 
           meta = {
+            mainProgram = "BrowserStackLocal";
             homepage = "https://www.browserstack.com/";
             description = "BrowserStack Local testing app";
             downloadPage = "https://www.browserstack.com/docs/live/local-testing/set-up-local-testing#Linux";
-            # license = lib.licenses.unfreeRedistributable;
             platforms = [ "x86_64-linux" ];
           };
         };
