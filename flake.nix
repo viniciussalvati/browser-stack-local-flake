@@ -1,5 +1,5 @@
 {
-  description = "Browserstack Local, warpped in a flake";
+  description = "Browserstack Local, wrapped in a flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -14,8 +14,9 @@
         stdenvNoCC.mkDerivation {
           name = "BrowserStackLocal";
 
-          src = fetchurl {
+          src = fetchzip {
             inherit url hash;
+            name = "BrowserStackLocal-source";
           };
 
           buildInputs = [
@@ -24,18 +25,13 @@
 
           nativeBuildInputs = [
             autoPatchelfHook
-            unzip
           ];
 
           sourceRoot = ".";
 
-          unpackPhase = ''
-            unzip $src
-          '';
-
           installPhase = ''
             runHook preInstall
-            install -m755 -D BrowserStackLocal $out/bin/BrowserStackLocal
+            install -m755 -D $src/BrowserStackLocal $out/bin/BrowserStackLocal
             runHook postInstall
           '';
 
@@ -52,7 +48,7 @@
       packages.x86_64-linux = {
         BrowserStackLocal = nixpkgs.lib.makeOverridable mkBrowserStackLocal {
           url = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip";
-          hash = "sha256-EloQ1oOT2FeFLMLlGsKv1SJrrNmvy4YNuTKJMgnI0y4=";
+          hash = "sha256-kHUBrdD+av+8GFpDDfFb7lF5tV1t7N/NNXtH2PrtDR4=";
         };
 
         default = self.packages.x86_64-linux.BrowserStackLocal;
