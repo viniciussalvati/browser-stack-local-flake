@@ -48,7 +48,7 @@
       packages.x86_64-linux = {
         BrowserStackLocal = nixpkgs.lib.makeOverridable mkBrowserStackLocal {
           url = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip";
-          hash = "sha256-4hm3pJko0YeeRE3xOVMba28mNktW3K7GiAcQ0Fb8ic4=";
+          hash = "sha256-jf3Bjav5DMGHDjgMdcEKdg8MjrvEAFy2na2KcZcHVjk=";
         };
 
         default = self.packages.x86_64-linux.BrowserStackLocal;
